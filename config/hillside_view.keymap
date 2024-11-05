@@ -35,8 +35,8 @@
         compatible = "zmk,conditional-layers";
 
         tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
+            if-layers = <4 3>;
+            then-layer = <4>;
         };
     };
 
@@ -135,7 +135,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "LAYER1OR4";
             #binding-cells = <0>;
-            bindings = <&mo 1>, <&mo 4>;
+            bindings = <&mo 4>, <&mo 4>;
         };
 
         shiftorcaps: shiftorcaps {
@@ -195,8 +195,8 @@
 
         navlayer {
             bindings = <
-&trans  &kp LS(LG(GRAVE))  &kp LS(LC(TAB))  &kp LC(TAB)      &kp LG(GRAVE)  &trans      &kp LG(Z)  &kp LG(X)  &kp LG(V)  &kp LG(Z)  &kp LS(LG(Z))  &trans
-&trans  &kp LGUI           &kp LALT         &kp LSHFT        &kp LCTRL      &trans      &kp LEFT   &kp DOWN   &kp RIGHT  &kp UP     &trans         &trans
+&trans  &kp LS(LG(GRAVE))  &kp LS(LC(TAB))  &kp LC(TAB)      &kp LG(GRAVE)  &trans      &kp LG(Z)  &kp LG(C)  &kp LG(V)  &kp LG(Z)  &kp LS(LG(Z))  &trans
+&trans  &kp LGUI           &kp LALT         &kp LSHFT        &kp LCTRL      &trans      &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans         &trans
 &trans  &trans             &trans           &kp LS(LG(ESC))  &kp LG(SPACE)  &trans      &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &trans         &trans
                                             &trans                                                            &trans
         &trans             &trans           &trans           &trans                                &trans     &trans     &kp BSPC   &kp DEL
