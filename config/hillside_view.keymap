@@ -131,18 +131,18 @@
             tapping-term-ms = <1000>;
         };
 
-        layer1or4: layer1or4 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "LAYER1OR4";
-            #binding-cells = <0>;
-            bindings = <&mo 1>, <&mo 4>;
-        };
-
         shiftorcaps: shiftorcaps {
             compatible = "zmk,behavior-tap-dance";
             label = "SHIFTORCAPS";
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+        };
+
+        layer1or4: layer1or4 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LAYER1OR4";
+            #binding-cells = <0>;
+            bindings = <&mo 1>, <&mo 4>;
         };
     };
 
