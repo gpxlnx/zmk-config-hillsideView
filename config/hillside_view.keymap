@@ -1,9 +1,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/rgb.h>
 
 // Left bottom row pinky 2nd column
 
@@ -38,8 +35,8 @@
         compatible = "zmk,conditional-layers";
 
         tri_layer {
-            if-layers = <SYM NUM>;
-            then-layer = <ADJ>;
+            if-layers = <1 2>;
+            then-layer = <3>;
         };
     };
 
@@ -116,50 +113,45 @@
     };
 
     behaviors {
-        lt_qk: layer_toggle_quick {
+        holdtolayer: holdtolayer {
             compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TOGGLE_QUICK";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <150>;
-            quick-tap-ms = <QUICK_TAP_MS>;
+            label = "HOLDTOLAYER";
             bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <1000>;
         };
 
-        mt_sk: mod_tap_sticky {
+        holdortap: holdortap {
             compatible = "zmk,behavior-hold-tap";
-            label = "MOD_TAP_STICKY";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <150>;
-            quick-tap-ms = <200>;
-            bindings = <&sk>, <&kp>;
-        };
-
-        ht: hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOLD_TAP";
-            #binding-cells = <2>;
-            tapping_term_ms = <200>;
-            quick_tap_ms = <200>;
-            flavor = "tap-preferred";
+            label = "HOLDORTAP";
             bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <1000>;
         };
 
-        lswp: left_swp {
-            label = "LSWAP";
+        layer1or4: layer1or4 {
             compatible = "zmk,behavior-tap-dance";
+            label = "LAYER1OR4";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&sk LGUI>, <&mo 2>, <&tog 2>;
+            bindings = <&mo 1>, <&mo 4>;
         };
 
-        rswp: right_swap {
+        shiftorcaps: shiftorcaps {
             compatible = "zmk,behavior-tap-dance";
-            label = "RIGHT_SWAP";
+            label = "SHIFTORCAPS";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&sk RGUI>, <&mo 2>, <&tog 2>;
+            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+        };
+    };
+
+    macros {
+        exitterm: exitterm {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp E &kp X &kp I &kp T &kp ENTER>;
+            label = "EXITTERM";
         };
     };
 
@@ -169,79 +161,54 @@
         default_layer {
             label = "DEFAULT";
             bindings = <
-&ht GRAVE TAB  &ht N1 Q        &ht N2 W       &ht N3 E         &ht N4 R      &ht N5 T      &ht N6 Y  &ht N7 U       &ht N8 I        &ht N9 O         &ht N0 P           &kp PIPE
-&kp ESC        &kp A           &kp S          &kp D            &kp F         &kp G         &kp H     &kp J          &kp K           &kp L            &kp SEMI           &kp SQT
-&sk LSHFT      &mt_sk LCTRL Z  &mt_sk LALT X  &kp C            &kp V         &kp B         &kp N     &kp M          &kp COMMA       &mt_sk RALT DOT  &mt_sk RCTRL FSLH  &sk RSHFT
-                                              &kp SPACE                                                             &kp C_MUTE
-               &lswp           &kp SPACE      &lt_qk SYM BSPC  &sk LEFT_ALT                          &sk RIGHT_ALT  &lt_qk NUM DEL  &kp RET          &rswp
+&kp TAB           &kp Q     &kp W  &kp E      &kp R         &kp T      &kp Y  &kp U          &kp I       &kp O       &kp P                              &kp BSPC
+&kp LEFT_CONTROL  &kp A     &kp S  &kp D      &kp F         &kp G      &kp H  &kp J          &kp K       &kp L       &kp SEMI                           &kp SQT
+&shiftorcaps      &kp Z     &kp X  &kp C      &kp V         &kp B      &kp N  &kp M          &kp COMMA   &kp DOT     &holdortap NON_US_BACKSLASH SLASH  &kp ESC
+                                   &kp SPACE                                                 &kp C_MUTE
+                  &kp LGUI  &mo 3  &kp SPACE  &sk LEFT_ALT                    &sk RIGHT_ALT  &kp RET     &layer1or4  &mo 2
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        winlinux_layer {
-            label = "WINLINUX";
+        numLayer {
             bindings = <
-&trans  &trans         &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans            &trans
-&trans  &trans         &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans            &trans
-&trans  &mt_sk LGUI Z  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &mt_sk RGUI FSLH  &trans
-                               &trans                                      &trans
-        &kp LCTRL      &trans  &trans  &trans                      &trans  &trans  &trans  &kp RCTRL
+&kp RG(RC(SPACE))  &kp LBKT    &kp N7  &kp N8     &kp N9  &kp RBKT       &kp K_MUTE     &kp LG(MINUS)  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp LG(EQUAL)  &trans
+&trans             &kp PLUS    &kp N4  &kp N5     &kp N6  &kp EQUAL      &kp LC(GRAVE)  &kp LSHFT      &kp LCTRL          &kp LALT         &kp LGUI       &trans
+&trans             &kp ASTRK   &kp N8  &kp N2     &kp N3  &kp BSLH       &kp LC(C)      &kp LC(L)      &kp LG(BSLH)       &trans           &trans         &trans
+                                       &trans                                                          &trans
+                   &kp PERIOD  &kp N0  &kp MINUS  &trans                                &trans         &trans             &trans           &trans
             >;
         };
 
-        swap_layer {
-            label = "SWAP";
+        symLayer {
             bindings = <
-&kp PIPE   &ht N0 P           &ht N9 O         &ht N8 I        &ht N7 U    &ht N6 Y      &ht N5 T  &ht N4 R    &ht N3 E         &ht N2 W       &ht N1 Q        &ht GRAVE TAB
-&kp SQT    &kp SEMI           &kp L            &kp K           &kp J       &kp H         &kp G     &kp F       &kp D            &kp S          &kp A           &kp ESC
-&sk RSHFT  &mt_sk RCTRL FSLH  &mt_sk RALT DOT  &kp COMMA       &kp M       &kp N         &kp B     &kp V       &kp C            &mt_sk LALT X  &mt_sk LCTRL Z  &sk LSHFT
-                                               &kp C_MUTE                                                      &kp SPACE
-           &tog SWP           &kp RET          &lt_qk NUM DEL  &sk RSHIFT                          &sk LSHIFT  &lt_qk SYM BSPC  &kp SPACE      &tog 2
+&trans  &kp LS(LBRC)   &kp LS(AMPS)  &kp LS(STAR)    &kp LS(LPAR)   &kp LS(RBRC)      &kp LBKT    &kp GRAVE   &kp BSLH    &trans      &kp RBKT    &trans
+&trans  &kp LS(COLON)  &kp LS(DLLR)  &kp LS(PRCNT)   &kp LCTRL      &kp EQUAL         &trans      &kp LSHFT   &kp LCTRL   &kp LALT    &kp LGUI    &trans
+&trans  &kp TILDE      &kp LS(EXCL)  &kp LS(AT)      &kp LS(POUND)  &kp LS(PIPE)      &kp LG(N5)  &kp LG(N1)  &kp LG(N2)  &kp LG(N3)  &kp LG(N4)  &trans
+                                     &trans                                                                   &trans
+        &kp LS(RPAR)   &kp MINUS     &kp UNDERSCORE  &trans                                       &trans      &trans      &trans      &trans
             >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
-        sym_layer {
-            label = "SYMBOLS";
+        navlayer {
             bindings = <
-&trans  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT      &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
-&trans  &trans    &trans  &trans    &trans    &trans         &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
-&trans  &trans    &trans  &trans    &trans    &trans         &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &kp TILDE
-                          &kp END                                                  &kp C_PP
-        &trans    &trans  &trans    &trans                              &trans     &trans           &trans    &trans
+&trans  &kp LS(LG(GRAVE))  &kp LS(LC(TAB))  &kp LC(TAB)      &kp LG(GRAVE)  &trans      &kp LG(Z)  &kp LG(X)  &kp LG(V)  &kp LG(Z)  &kp LS(LG(Z))  &trans
+&trans  &kp LGUI           &kp LALT         &kp LSHFT        &kp LCTRL      &trans      &kp LEFT   &kp DOWN   &kp RIGHT  &kp UP     &trans         &trans
+&trans  &trans             &trans           &kp LS(LG(ESC))  &kp LG(SPACE)  &trans      &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &trans         &trans
+                                            &trans                                                            &trans
+        &trans             &trans           &trans           &trans                                &trans     &trans     &kp BSPC   &kp DEL
             >;
-
-            sensor-bindings = <&inc_dec_kp UP DOWN &inc_dec_kp C_NEXT C_PREV>;
         };
 
-        num_layer {
-            label = "NUMBERS";
+        funlayer {
             bindings = <
-&kp TAB  &ht F1 N1  &ht F2 N2  &ht F3 N3  &ht F4 N4  &ht F5 N5      &ht F6 N6  &ht F7 N7  &ht F8 N8  &ht F9 N9  &ht F10 N0  &trans
-&trans   &trans     &trans     &trans     &trans     &trans         &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans      &trans
-&trans   &trans     &trans     &trans     &trans     &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &trans      &trans
-                               &trans                                                     &trans
-         &trans     &trans     &trans     &trans                               &trans     &trans     &trans     &trans
+&trans       &kp F12  &kp F7         &kp F8   &kp F9  &kp LG(LS(NUMBER_4))      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans
+&bt BT_CLR   &kp F11  &kp F4         &kp F5   &kp F6  &kp LG(LS(NUMBER_3))      &trans        &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &trans
+&bootloader  &kp F10  &kp F1         &kp F2   &kp F3  &kp LG(LS(NUMBER_2))      &bootloader   &trans        &trans        &trans        &trans        &trans
+                                     &trans                                                                 &trans
+             &trans   &kp LG(LC(Q))  &kp TAB  &trans                                          &trans        &trans        &trans        &trans
             >;
-
-            sensor-bindings = <&inc_dec_kp HOME END &inc_dec_kp C_NEXT C_PREV>;
-        };
-
-        adj_layer {
-            label = "ADJUST";
-            bindings = <
-&bootloader  &rgb_ug RGB_TOG    &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI      &out OUT_TOG  &trans    &trans      &trans        &trans      &bootloader
-&sys_reset   &rgb_ug RGB_EFF    &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD      &trans        &trans    &trans      &trans        &trans      &sys_reset
-&bt BT_CLR   &bt BT_SEL 0       &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4         &kp C_PREV    &kp C_PP  &kp C_NEXT  &kp C_VOL_UP  &kp C_MUTE  &kp C_VOL_DN
-                                                 &trans                                                                         &trans
-             &ext_power EP_TOG  &to WIN          &trans           &trans                                              &trans    &trans      &to DEF       &trans
-            >;
-
-            // F15 and F14 are brightness controls for macOS
-
-            sensor-bindings = <&inc_dec_kp F15 F14 &inc_dec_kp PG_UP PG_DN>;
         };
     };
 };
