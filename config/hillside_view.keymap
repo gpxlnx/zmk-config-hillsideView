@@ -136,6 +136,8 @@
             label = "SHIFTORCAPS";
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+
+            tapping-term-ms = <300>;
         };
 
         layer1or4: layer1or4 {
@@ -143,6 +145,8 @@
             label = "LAYER1OR4";
             #binding-cells = <0>;
             bindings = <&mo 1>, <&mo 4>;
+
+            tapping-term-ms = <300>;
         };
     };
 
