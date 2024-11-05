@@ -135,7 +135,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "LAYER1OR4";
             #binding-cells = <0>;
-            bindings = <&mo 4>, <&mo 4>;
+            bindings = <&mo 1>, <&mo 4>;
         };
 
         shiftorcaps: shiftorcaps {
