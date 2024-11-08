@@ -141,6 +141,15 @@
 
             tapping-term-ms = <500>;
         };
+
+        layer3or5: layer3or5 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LAYER3OR5";
+            #binding-cells = <0>;
+            bindings = <&mo 3>, <&mo 5>;
+
+            tapping-term-ms = <500>;
+        };
     };
 
     macros {
@@ -213,6 +222,16 @@
 &bootloader  &kp F10  &kp F1         &kp F2   &kp F3  &kp LG(LS(NUMBER_2))      &bootloader   &trans        &trans        &trans        &trans        &trans
                                      &trans                                                                 &trans
              &trans   &kp LG(LC(Q))  &kp TAB  &trans                                          &trans        &trans        &trans        &trans
+            >;
+        };
+
+        codinglayer {
+            bindings = <
+&trans  &trans  &trans  &trans     &trans     &trans         &trans     &trans     &trans         &trans  &trans  &trans
+&trans  &trans  &trans  &kp LG(A)  &kp LG(C)  &kp LG(V)      &kp LG(X)  &kp LG(Z)  &kp LG(LS(Z))  &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans     &trans         &trans     &trans     &trans         &trans  &trans  &trans
+                        &trans                                                     &trans
+        &trans  &trans  &trans     &trans                               &trans     &trans         &trans  &trans
             >;
         };
     };
