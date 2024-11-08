@@ -203,11 +203,11 @@
 
         navlayer {
             bindings = <
-&kp LS(TAB)  &kp LS(LG(GRAVE))  &kp LS(LC(TAB))  &kp LC(TAB)      &kp LG(GRAVE)  &kp LG(W)      &kp LG(A)  &kp LG(C)  &kp LG(V)  &kp LG(Z)  &kp LS(LG(Z))  &trans
-&trans       &kp LGUI           &kp LALT         &kp LSHFT        &kp LCTRL      &kp LG(T)      &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans         &trans
-&trans       &trans             &trans           &kp LS(LG(ESC))  &kp LG(SPACE)  &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &trans         &trans
-                                                 &trans                                                               &kp LG(R)
-             &trans             &trans           &trans           &trans                                   &trans     &trans     &kp BSPC   &kp DEL
+&kp LS(TAB)  &kp LS(LG(GRAVE))  &kp LS(LC(TAB))  &kp LC(TAB)         &kp LG(GRAVE)  &kp LG(W)          &kp LG(A)  &kp LG(C)  &kp LG(V)  &kp LG(Z)  &kp LS(LG(Z))  &trans
+&trans       &kp LGUI           &kp LALT         &kp LSHFT           &kp LCTRL      &kp LG(T)          &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans         &trans
+&trans       &trans             &trans           &kp LG(LA(ESCAPE))  &kp LG(SPACE)  &kp LG(SLASH)      &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &trans         &trans
+                                                 &trans                                                                      &kp LG(R)
+             &trans             &trans           &trans              &trans                                       &trans     &trans     &kp BSPC   &kp DEL
             >;
 
             sensor-bindings =
@@ -227,11 +227,11 @@
 
         codinglayer {
             bindings = <
-&trans  &trans  &trans  &trans     &trans     &trans             &trans     &trans     &trans         &trans  &trans  &trans
-&trans  &trans  &trans  &kp LG(A)  &kp LG(C)  &kp LG(V)          &kp LG(X)  &kp LG(Z)  &kp LG(LS(Z))  &trans  &trans  &trans
-&trans  &trans  &trans  &trans     &trans     &kp LG(LS(P))      &trans     &trans     &trans         &trans  &trans  &trans
-                        &trans                                                         &trans
-        &trans  &trans  &trans     &trans                                   &trans     &trans         &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans             &trans     &trans     &trans         &trans  &trans  &trans
+&trans  &trans  &kp LG(S)  &kp LG(A)  &kp LG(C)  &kp LG(V)          &kp LG(X)  &kp LG(Z)  &kp LG(LS(Z))  &trans  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &kp LG(SLASH)      &trans     &trans     &trans         &trans  &trans  &trans
+                           &trans                                                         &trans
+        &trans  &trans     &trans     &trans                                   &trans     &trans         &trans  &trans
             >;
         };
     };
