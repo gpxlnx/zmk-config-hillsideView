@@ -36,12 +36,6 @@
     combos {
         compatible = "zmk,combos";
 
-        caps {
-            timeout-ms = <50>;
-            key-positions = <LB5 RB5>;
-            bindings = <&caps_word>;
-        };
-
         // symbols
 
         cb_excl {
@@ -102,6 +96,16 @@
             bindings = <&kp AMPERSAND>;
             key-positions = <10 22>;
             timeout-ms = <30>;
+        };
+
+        play-pause {
+            bindings = <&kp K_PLAY_PAUSE>;
+            key-positions = <19 20>;
+        };
+
+        print-clipboard {
+            bindings = <&kp LG(NUMBER_4)>;
+            key-positions = <15 16>;
         };
     };
 
