@@ -99,12 +99,12 @@
         };
 
         play-pause {
-            bindings = <&kp K_PLAY_PAUSE>;
+            bindings = <&kp C_PLAY_PAUSE>;
             key-positions = <19 20>;
         };
 
         print-clipboard {
-            bindings = <&kp LG(NUMBER_4)>;
+            bindings = <&kp LG(LS(NUMBER_4))>;
             key-positions = <15 16>;
         };
     };
