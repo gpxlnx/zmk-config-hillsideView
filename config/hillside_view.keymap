@@ -103,7 +103,7 @@
             key-positions = <19 20>;
         };
 
-        print-clipboard {
+        print-save {
             bindings = <&kp LG(LS(NUMBER_4))>;
             key-positions = <15 16>;
         };
