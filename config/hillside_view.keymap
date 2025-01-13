@@ -107,6 +107,16 @@
             bindings = <&kp LG(LS(NUMBER_4))>;
             key-positions = <15 16>;
         };
+
+        copy {
+            bindings = <&kp LG(C)>;
+            key-positions = <16 17>;
+        };
+
+        paste {
+            bindings = <&kp LG(V)>;
+            key-positions = <28 29>;
+        };
     };
 
     behaviors {
